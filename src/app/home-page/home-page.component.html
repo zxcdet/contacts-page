@@ -1,1 +1,20 @@
-<p>home-page works!</p>
+<div class="row">
+  <div class="container__btn">
+    <button mat-raised-button color="primary"
+            class="btn"
+            (click)="opeenDialog()"
+    >Add contacts +
+    </button>
+  </div>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Find contacts</mat-label>
+    <input matInput [formControl]="searchInput">
+  </mat-form-field>
+</div>
+<div class="flex-column">
+  <div *ngFor="let item of contactsList | search: searchStr" class="items">
+    <app-card-contacts
+      [contacts]="item" (deleteEvent)="deleteContacts($event)"
+      (updateEvent)="emitContacts($event)" [str]="searchStr"></app-card-contacts>
+  </div>
+</div>

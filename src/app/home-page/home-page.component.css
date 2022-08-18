@@ -1,0 +1,36 @@
+
+.container__btn {
+  margin: 40px 0;
+}
+
+.row {
+  text-align: center;
+}
+
+.example-full-width {
+  width: 100%;
+  min-width: 150px;
+  max-width: 400px;
+}
+
+.btn {
+  width: 350px;
+  height: 50px;
+  font-size: 20px;
+}
+
+.flex-column {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.items {
+  margin: 20px;
+  padding-top: 30px;
+  padding-left: 10px;
+}
+

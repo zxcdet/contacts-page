@@ -1,1 +1,40 @@
-<p>card-contacts works!</p>
+<mat-card class="card" [routerLink]="['/home', contacts?.id]">
+  <div class="action">
+    <div>
+      <mat-icon>perm_contact_calendar</mat-icon>
+    </div>
+    <div>
+      <button class="icon-delete" mat-icon-button (click)="onDelete($event)">
+        <mat-icon>delete_forever</mat-icon>
+      </button>
+      <button class="icon-edit" mat-icon-button (click)="openDialog($event)">
+        <mat-icon>edit</mat-icon>
+      </button>
+    </div>
+  </div>
+  <hr>
+  <mat-card-title>
+    <p>FirstName:
+      <span appHighlight
+            [searchedWords]="str"
+            [objectType]="'firstName'"
+            [text]="contacts">{{contacts?.firstName}}
+      </span></p>
+    <p>LastName:
+      <span appHighlight
+            [searchedWords]="str"
+            [objectType]="'lastName'"
+            [text]="contacts">{{contacts?.lastName}}
+      </span></p>
+  </mat-card-title>
+  <mat-card-subtitle>
+    <h2>
+      Phone number: <span>{{contacts?.phone}}</span>
+    </h2>
+    <hr>
+    <div class="link">
+      <a>Read more</a>
+      <mat-icon>trending_flat</mat-icon>
+    </div>
+  </mat-card-subtitle>
+</mat-card>

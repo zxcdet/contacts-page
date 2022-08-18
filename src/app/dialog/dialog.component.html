@@ -1,1 +1,76 @@
-<p>dialog works!</p>
+<form action="" [formGroup]="form">
+  <div class="row">
+    <div class="first">
+      <div>
+        <span>First name</span>
+      </div>
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>first name</mat-label>
+        <input matInput type="text" formControlName="firstName">
+      </mat-form-field>
+      <div>
+        <span>Last name</span>
+      </div>
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>last name</mat-label>
+        <input matInput type="text" formControlName="lastName">
+      </mat-form-field>
+      <div>
+        <span>Phone number</span>
+      </div>
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>phone</mat-label>
+        <input matInput type="number" formControlName="phone">
+      </mat-form-field>
+      <div>
+        <span>Email</span>
+      </div>
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>emaiil</mat-label>
+        <input matInput type="email" formControlName="email">
+      </mat-form-field>
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>description</mat-label>
+        <textarea matInput formControlName="description"></textarea>
+      </mat-form-field>
+    </div>
+    <div class="last">
+      <div>
+        <span>Date of birth</span>
+      </div>
+      <mat-form-field appearance="fill" class="example-full-width">
+        <mat-label>Choose a date</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="date">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <div>
+        <span>Your country</span>
+      </div>
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>country</mat-label>
+        <input matInput type="text" formControlName="country">
+      </mat-form-field>
+      <div>
+        <span>Your city</span>
+      </div>
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>city</mat-label>
+        <input matInput type="text" formControlName="city">
+      </mat-form-field>
+      <div>
+        <span>Your skills</span>
+      </div>
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label> skils</mat-label>
+        <input matInput type="text" formControlName="skils">
+      </mat-form-field>
+      <div class="btn">
+        <button mat-raised-button color="primary" (click)="onClick()" [disabled]="form.invalid" class="btn__con">
+          confirm
+        </button>
+      </div>
+    </div>
+  </div>
+</form>

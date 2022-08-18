@@ -1,0 +1,29 @@
+span {
+  color: rgba(156,154,150);
+}
+.example-full-width {
+  width: 300px;
+}
+.row {
+  display: flex;
+  justify-content: space-between;
+}
+.btn {
+  display: flex;
+  margin: 35px 0 0 200px;
+}
+.btn button {
+  height: 40px;
+  width: 100px;
+}
+.first {
+  padding-left: 60px;
+}
+.last {
+  padding-right: 60px;
+}
+.btn__con {
+  margin-right: 10px;
+}
+.btn__cls {
+}

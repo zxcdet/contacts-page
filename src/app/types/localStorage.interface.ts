@@ -1,4 +1,4 @@
 export interface LocalStorageInterface {
-  getWeather(key: string)
-  setWeather(key: string, value: string)
+  getContacts(key: string)
+  setContacts(key: string, value: string)
 }
