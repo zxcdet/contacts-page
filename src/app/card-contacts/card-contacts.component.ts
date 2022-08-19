@@ -1,5 +1,6 @@
-import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, Output} from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
+import {filter, Subject, takeUntil} from "rxjs";
 
 import {ContactsInterface} from "../types/contacts.interface";
 import {DialogComponent} from "../dialog/dialog.component";
@@ -11,12 +12,14 @@ import {DialogComponent} from "../dialog/dialog.component";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class CardContactsComponent {
+export class CardContactsComponent implements OnDestroy {
   @Input() contacts: ContactsInterface
-  @Input()str: string[]
+  @Input() str: string[]
 
   @Output() deleteEvent: EventEmitter<number> = new EventEmitter<number>;
   @Output() updateEvent: EventEmitter<{ action: ContactsInterface, _id: number }> = new EventEmitter<{ action: ContactsInterface, _id: number }>;
+
+  public readonly destroy$ = new Subject<boolean>()
 
   constructor(public dialog: MatDialog) {
   }
@@ -34,11 +37,17 @@ export class CardContactsComponent {
       data: this.contacts
     })
 
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result.id) {
-        this.updateEvent.emit({action: result, _id: this.contacts.id})
-      }
-    })
+    dialogRef.afterClosed()
+      .pipe(
+        takeUntil(this.destroy$),
+        filter((value) => !!value)
+      ).subscribe(result => {
+          this.updateEvent.emit({action: result, _id: this.contacts.id})
+        })
   }
 
+  ngOnDestroy(): void {
+    this.destroy$.next(true)
+    this.destroy$.complete()
+  }
 }

@@ -10,7 +10,7 @@ span {
 }
 .btn {
   display: flex;
-  margin: 35px 0 0 200px;
+  margin: 35px 0 0 80px;
 }
 .btn button {
   height: 40px;
@@ -20,7 +20,7 @@ span {
   padding-left: 60px;
 }
 .last {
-  padding-right: 60px;
+  padding-left: 50px;
 }
 .btn__con {
   margin-right: 10px;

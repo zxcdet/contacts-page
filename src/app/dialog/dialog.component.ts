@@ -37,8 +37,12 @@ export class DialogComponent implements OnInit {
         country: this.form.get('country')?.value,
         city: this.form.get('city')?.value,
         skils: this.form.get('skils')?.value,
-        id: this.data.id
+        id: this.data.id,
       })
+  }
+
+  public onClickCancel(): void {
+    this.dialogRef.close()
   }
 
   private initialiForm(): void {

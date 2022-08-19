@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
 import {FormControl} from "@angular/forms";
-import {map, Subject, takeUntil} from "rxjs";
+import {filter, map, Subject, takeUntil} from "rxjs";
 
 import {DialogComponent} from "../dialog/dialog.component";
 import {LOCAL_STORAGE_TOKEN} from "../services/localStorageToken";
@@ -26,7 +26,8 @@ export class HomePageComponent implements OnInit, OnDestroy {
     public dialog: MatDialog,
     private readonly changeDetectorRef: ChangeDetectorRef,
     @Inject(LOCAL_STORAGE_TOKEN) private readonly localStorageService: LocalStorageInterface
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     this.setDefaultContacts()
@@ -58,13 +59,15 @@ export class HomePageComponent implements OnInit, OnDestroy {
       }
     })
 
-    dialogRef.afterClosed().subscribe((result: ContactsInterface) => {
-      this.changeDetectorRef.markForCheck()
-      if (result.id) {
+    dialogRef.afterClosed()
+      .pipe(
+        takeUntil(this.destroy$),
+        filter((value) => !!value)
+      ).subscribe((result: ContactsInterface) => {
+        this.changeDetectorRef.markForCheck();
         this.contactsList.push(result)
         this.localStorageService.setContacts('contacts', JSON.stringify(this.contactsList))
-      }
-    })
+      })
   }
 
   private setDefaultContacts(): void {
