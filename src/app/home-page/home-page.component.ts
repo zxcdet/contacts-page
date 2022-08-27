@@ -55,7 +55,7 @@ export class HomePageComponent implements OnInit, OnDestroy {
       width: '850px',
       height: '500px',
       data: {
-        id: (this.contactsList.length + 1)
+        id: Date.now()
       }
     })
 
